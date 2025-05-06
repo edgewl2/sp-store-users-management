@@ -1,1 +1,3 @@
-spring.application.name=user-management
+spring:
+  application:
+    name: user-management
