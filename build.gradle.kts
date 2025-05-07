@@ -2,8 +2,8 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.5"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.flywaydb.flyway") version "11.8.0"
     id("org.openapi.generator") version "7.12.0"
+    id("nu.studer.jooq") version "10.1"
 }
 
 group = "dev.edgeahz.ec.spstore"
@@ -30,7 +30,7 @@ extra["springCloudVersion"] = "2024.0.1"
 dependencies {
     //Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-jooq")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -44,9 +44,15 @@ dependencies {
     implementation("org.springframework.security:spring-security-oauth2-jose")
 
     // Database
-    implementation("org.flywaydb:flyway-core")
-    implementation("org.flywaydb:flyway-mysql")
+    implementation("org.flywaydb:flyway-core:11.8.0")
+    implementation("org.flywaydb:flyway-mysql:11.8.0")
     runtimeOnly("com.mysql:mysql-connector-j")
+
+    // JOOQ
+    implementation("org.jooq:jooq:3.19.22")
+    implementation("org.jooq:jooq-meta:3.19.22")
+    implementation("org.jooq:jooq-codegen:3.19.22")
+    jooqGenerator("com.mysql:mysql-connector-j")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")
@@ -115,6 +121,44 @@ openApiGenerate {
     ))
 }
 
+jooq {
+    version.set("3.19.22")
+    configurations {
+        create("main") {
+            generateSchemaSourceOnCompilation.set(true)
+            jooqConfiguration.apply {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc.apply {
+                    driver = "com.mysql.cj.jdbc.Driver"
+                    url = "jdbc:mysql://localhost:3306/user_management"
+                    user = "root"
+                    password = "bass"
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.DefaultGenerator"
+                    database.apply {
+                        name = "org.jooq.meta.mysql.MySQLDatabase"
+                        inputSchema = "user_management"
+                        includes = ".*"
+                        excludes = "flyway_schema_history"
+                    }
+                    generate.apply {
+                        isDeprecated = false
+                        isRecords = true
+                        isImmutablePojos = true
+                        isFluentSetters = true
+                    }
+                    target.apply {
+                        packageName = "dev.edgeahz.ec.spstore.user_management.infrastructure.jooq"
+                        directory =  "${layout.buildDirectory.get()}/generated/jooq"
+                    }
+                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                }
+            }
+        }
+    }
+}
+
 sourceSets {
     main {
         java {
@@ -126,4 +170,3 @@ sourceSets {
 tasks.compileJava {
     dependsOn(tasks.openApiGenerate)
 }
-
