@@ -1,7 +1,14 @@
 package dev.edgeahz.ec.spstore.user_management.infrastructure.exception;
 
 import dev.edgeahz.ec.spstore.user_management.api.rest.dto.ErrorResponse;
-import dev.edgeahz.ec.spstore.user_management.domain.exception.*;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.AuthenticationException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.AuthorizationException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.BusinessException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.DuplicateResourceException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.InvalidTokenException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.PasswordMismatchException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.ResourceNotFoundException;
+import dev.edgeahz.ec.spstore.user_management.domain.exception.ValidationException;
 import dev.edgeahz.ec.spstore.user_management.domain.exception.base.BaseException;
 import dev.edgeahz.ec.spstore.user_management.domain.exception.base.ResourceException;
 import lombok.RequiredArgsConstructor;
@@ -11,14 +18,12 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
