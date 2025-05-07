@@ -20,7 +20,20 @@ public class RoleController implements RoleApi {
     private final RoleMapper mapper;
 
     @Override
-    public ResponseEntity<List<RoleResponse>> apiV1RolesGet() {
+    public ResponseEntity<RoleResponse> createRole(RoleRequest roleRequest) {
+        Role role = mapper.toRole(roleRequest);
+        RoleResponse roleResponse = mapper.toRoleResponse(service.createRole(role));
+        return ResponseEntity.ok(roleResponse);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteRole(String id) {
+        service.deleteRole(Long.parseLong(id));
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<List<RoleResponse>> getAllRoles() {
 
         List<RoleResponse> roles = service.getAllRoles()
                 .stream()
@@ -31,30 +44,17 @@ public class RoleController implements RoleApi {
     }
 
     @Override
-    public ResponseEntity<Void> apiV1RolesIdDelete(String id) {
-        service.deleteRole(Long.parseLong(id));
-        return ResponseEntity.noContent().build();
-    }
-
-    @Override
-    public ResponseEntity<RoleResponse> apiV1RolesIdGet(String id) {
+    public ResponseEntity<RoleResponse> getRoleById(String id) {
         Long roleId = Long.parseLong(id);
         RoleResponse roleResponse = mapper.toRoleResponse(service.getRoleById(roleId));
         return ResponseEntity.ok(roleResponse);
     }
 
     @Override
-    public ResponseEntity<RoleResponse> apiV1RolesIdPut(String id, RoleRequest roleRequest) {
+    public ResponseEntity<RoleResponse> updateRole(String id, RoleRequest roleRequest) {
         Long roleId = Long.parseLong(id);
         Role role = mapper.toRole(roleRequest);
         RoleResponse roleResponse = mapper.toRoleResponse(service.updateRole(roleId, role));
-        return ResponseEntity.ok(roleResponse);
-    }
-
-    @Override
-    public ResponseEntity<RoleResponse> apiV1RolesPost(RoleRequest roleRequest) {
-        Role role = mapper.toRole(roleRequest);
-        RoleResponse roleResponse = mapper.toRoleResponse(service.createRole(role));
         return ResponseEntity.ok(roleResponse);
     }
 }
