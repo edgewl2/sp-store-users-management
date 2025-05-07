@@ -25,17 +25,25 @@ public class AddressServiceImpl implements AddressService {
         userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", userId));
 
-        return addressRepository.findAllByUserId(userId);
+        List<Address> addresses = addressRepository.findAllByUserId(userId);
+        log.info("Se encontraron {} direcciones para el usuario con ID: {}", addresses.size(), userId);
+        return addresses;
     }
 
     @Override
     public Address getAddressById(Long addressId, Long userId) {
         log.info("Buscando dirección con ID: {} para el usuario con ID: {}", addressId, userId);
         userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", userId));
+                .orElseThrow(() -> {
+                    log.error("No se encontró el usuario con ID: {}", userId);
+                    return new ResourceNotFoundException("User", userId);
+                });
 
         return addressRepository.findByIdAndUserId(addressId, userId)
-                .orElseThrow(() -> new ResourceNotFoundException("Address", addressId));
+                .orElseThrow(() -> {
+                    log.error("No se encontró la dirección con ID: {} para el usuario con ID: {}", addressId, userId);
+                    return new ResourceNotFoundException("Address", addressId);
+                });
     }
 
     @Override
