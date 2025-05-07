@@ -44,6 +44,21 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role getRoleByName(String name) {
+        log.info("Buscando rol con nombre: {}", name);
+
+        return repository.findByName(name)
+                .map(role -> {
+                    log.info("Rol encontrado: {} (ID: {})", role.getName(), role.getId());
+                    return role;
+                })
+                .orElseThrow(() -> {
+                    log.error("No se encontró el rol con nombre: {}", name);
+                    return new ResourceNotFoundException("Role", "name", name);
+                });
+    }
+
+    @Override
     public Role createRole(Role role) {
         log.info("Creando nuevo rol: {}", role.getName());
 
