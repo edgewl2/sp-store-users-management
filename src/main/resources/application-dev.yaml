@@ -19,21 +19,18 @@ spring:
       connection-timeout: 30000
       max-lifetime: 1800000
 
-  jpa:
-    hibernate:
-      ddl-auto: validate
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        format_sql: true
-    show-sql: true
-
   flyway:
     enabled: true
+    locations: classpath:db/migration
     baseline-on-migrate: true
-    out-of-order: true
+    schemas: user_management
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080
+          jwk-set-uri: http://localhost:8080/.well-known/jwks.json
 
   management:
     endpoints:
@@ -46,11 +43,12 @@ spring:
 
   logging:
     level:
-      dev.edgeahz.ec.sports.authsrver: DEBUG
+      dev.edgeahz.ec.spstore.user_management: DEBUG
+      org.jooq: INFO
       org.springdoc: DEBUG
       org.springframework.web: INFO
       org.springframework.security: DEBUG
-      org.springframework.security.oauth2: DEBUG
+#      org.springframework.security.oauth2: DEBUG
 
 springdoc:
   api-docs:
