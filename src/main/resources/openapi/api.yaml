@@ -16,17 +16,17 @@ servers:
     description: Servidor local de desarrollo
 
 tags:
-  - name: Usuarios
+  - name: User
     description: Operaciones relacionadas con usuarios
-  - name: Direcciones
+  - name: Address
     description: Operaciones relacionadas con direcciones de envío
-  - name: Teléfonos
+  - name: Phone
     description: Operaciones relacionadas con números de teléfono
-  - name: Roles
+  - name: Role
     description: Operaciones relacionadas con roles y permisos
-  - name: Autenticación
+  - name: Auth
     description: Operaciones relacionadas con la autenticación
-  - name: Administración
+  - name: Admin
     description: Operaciones administrativas
 
 paths:
@@ -35,7 +35,7 @@ paths:
       summary: Obtener todos los usuarios
       description: Retorna una lista de todos los usuarios registrados. Solo accesible por administradores.
       tags:
-        - Usuarios
+        - User
         - Administración
       security:
         - bearerAuth: []
@@ -58,7 +58,7 @@ paths:
         Crea un nuevo usuario en el sistema. Todos los campos son obligatorios.
         Se valida que el usuario sea mayor de 18 años y que el correo electrónico tenga un formato válido.
       tags:
-        - Usuarios
+        - User
       requestBody:
         required: true
         content:
@@ -88,7 +88,7 @@ paths:
       summary: Obtener un usuario por ID
       description: Retorna los detalles de un usuario específico. Accesible por el propio usuario o por administradores.
       tags:
-        - Usuarios
+        - User
       security:
         - bearerAuth: []
       parameters:
@@ -115,7 +115,7 @@ paths:
       summary: Actualizar un usuario
       description: Actualiza los datos de un usuario específico. Accesible por el propio usuario o por administradores.
       tags:
-        - Usuarios
+        - User
       security:
         - bearerAuth: []
       parameters:
@@ -154,8 +154,8 @@ paths:
       summary: Eliminar un usuario
       description: Elimina un usuario específico. Solo accesible por administradores.
       tags:
-        - Usuarios
-        - Administración
+        - User
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -180,8 +180,8 @@ paths:
       summary: Cambiar contraseña
       description: Permite a un usuario cambiar su contraseña. Requiere la contraseña actual.
       tags:
-        - Usuarios
-        - Autenticación
+        - User
+        - Auth
       security:
         - bearerAuth: []
       parameters:
@@ -216,8 +216,8 @@ paths:
       summary: Obtener direcciones de un usuario
       description: Retorna todas las direcciones de un usuario específico.
       tags:
-        - Usuarios
-        - Direcciones
+        - User
+        - Address
       security:
         - bearerAuth: []
       parameters:
@@ -246,8 +246,8 @@ paths:
       summary: Agregar dirección a un usuario
       description: Agrega una nueva dirección a un usuario específico.
       tags:
-        - Usuarios
-        - Direcciones
+        - User
+        - Address
       security:
         - bearerAuth: []
       parameters:
@@ -288,8 +288,8 @@ paths:
       summary: Actualizar dirección
       description: Actualiza una dirección específica de un usuario.
       tags:
-        - Usuarios
-        - Direcciones
+        - User
+        - Address
       security:
         - bearerAuth: []
       parameters:
@@ -334,8 +334,8 @@ paths:
       summary: Eliminar dirección
       description: Elimina una dirección específica de un usuario.
       tags:
-        - Usuarios
-        - Direcciones
+        - User
+        - Address
       security:
         - bearerAuth: []
       parameters:
@@ -366,8 +366,8 @@ paths:
       summary: Obtener números de teléfono de un usuario
       description: Retorna todos los números de teléfono de un usuario específico.
       tags:
-        - Usuarios
-        - Teléfonos
+        - User
+        - Phone
       security:
         - bearerAuth: []
       parameters:
@@ -396,8 +396,8 @@ paths:
       summary: Agregar número de teléfono a un usuario
       description: Agrega un nuevo número de teléfono a un usuario específico.
       tags:
-        - Usuarios
-        - Teléfonos
+        - User
+        - Phone
       security:
         - bearerAuth: []
       parameters:
@@ -438,8 +438,8 @@ paths:
       summary: Actualizar número de teléfono
       description: Actualiza un número de teléfono específico de un usuario.
       tags:
-        - Usuarios
-        - Teléfonos
+        - User
+        - Phone
       security:
         - bearerAuth: []
       parameters:
@@ -484,8 +484,8 @@ paths:
       summary: Eliminar número de teléfono
       description: Elimina un número de teléfono específico de un usuario.
       tags:
-        - Usuarios
-        - Teléfonos
+        - User
+        - Phone
       security:
         - bearerAuth: []
       parameters:
@@ -516,8 +516,8 @@ paths:
       summary: Obtener todos los roles
       description: Retorna una lista de todos los roles disponibles. Solo accesible por administradores.
       tags:
-        - Roles
-        - Administración
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       responses:
@@ -537,8 +537,8 @@ paths:
       summary: Crear un nuevo rol
       description: Crea un nuevo rol en el sistema. Solo accesible por administradores.
       tags:
-        - Roles
-        - Administración
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       requestBody:
@@ -570,8 +570,8 @@ paths:
       summary: Obtener un rol por ID
       description: Retorna los detalles de un rol específico. Solo accesible por administradores.
       tags:
-        - Roles
-        - Administración
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -598,8 +598,8 @@ paths:
       summary: Actualizar un rol
       description: Actualiza los datos de un rol específico. Solo accesible por administradores.
       tags:
-        - Roles
-        - Administración
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -638,8 +638,8 @@ paths:
       summary: Eliminar un rol
       description: Elimina un rol específico. Solo accesible por administradores.
       tags:
-        - Roles
-        - Administración
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -664,8 +664,8 @@ paths:
       summary: Obtener roles de un usuario
       description: Retorna todos los roles asignados a un usuario específico.
       tags:
-        - Usuarios
-        - Roles
+        - User
+        - Role
       security:
         - bearerAuth: []
       parameters:
@@ -694,9 +694,9 @@ paths:
       summary: Asignar rol a un usuario
       description: Asigna un rol a un usuario específico. Solo accesible por administradores.
       tags:
-        - Usuarios
-        - Roles
-        - Administración
+        - User
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -740,9 +740,9 @@ paths:
       summary: Eliminar rol de un usuario
       description: Elimina un rol asignado a un usuario específico. Solo accesible por administradores.
       tags:
-        - Usuarios
-        - Roles
-        - Administración
+        - User
+        - Role
+        - Admin
       security:
         - bearerAuth: []
       parameters:
@@ -775,8 +775,8 @@ paths:
         Inicia el proceso de restablecimiento de contraseña enviando un correo electrónico 
         con un enlace que contiene un token de restablecimiento.
       tags:
-        - Usuarios
-        - Autenticación
+        - User
+        - Auth
       requestBody:
         required: true
         content:
@@ -800,8 +800,8 @@ paths:
         Completa el proceso de restablecimiento de contraseña utilizando el token 
         enviado por correo electrónico y estableciendo una nueva contraseña.
       tags:
-        - Usuarios
-        - Autenticación
+        - User
+        - Auth
       requestBody:
         required: true
         content:
@@ -1175,19 +1175,31 @@ components:
       properties:
         message:
           type: string
-          description: Mensaje de error
+          description: Mensaje de error principal
           example: "Error en la solicitud"
         details:
           type: array
-          description: Detalles del error
+          description: Detalles específicos del error
           items:
             type: string
-          example: ["El campo 'email' debe ser un correo electrónico válido"]
+          example: [ "El campo 'email' debe ser un correo electrónico válido" ]
         timestamp:
           type: string
           format: date-time
           description: Fecha y hora del error
           example: "2023-01-01T12:00:00Z"
+        status:
+          type: integer
+          description: Código de estado HTTP
+          example: 400
+        error:
+          type: string
+          description: Código de error específico
+          example: "VALIDATION_ERROR"
+        domain:
+          type: string
+          description: Dominio al que pertenece el error
+          example: "validation"
 
   responses:
     Unauthorized:
@@ -1196,18 +1208,117 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "No autorizado"
+            details: [ "Se requiere autenticación para acceder a este recurso" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 401
+            error: "AUTHENTICATION_ERROR"
+            domain: "security"
     Forbidden:
       description: Prohibido - No tiene permisos para acceder al recurso
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Acceso denegado"
+            details: [ "No tiene permisos para acceder a este recurso" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 403
+            error: "AUTHORIZATION_ERROR"
+            domain: "security"
     NotFound:
       description: Recurso no encontrado
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Recurso no encontrado"
+            details: [ "El recurso solicitado no existe o no está disponible" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 404
+            error: "RESOURCE_NOT_FOUND"
+            domain: "user"
+    ValidationError:
+      description: Error de validación - Los datos proporcionados no son válidos
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Validación fallida"
+            details: [ "El campo 'email' debe ser un correo electrónico válido", "El campo 'password' debe tener al menos 8 caracteres" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 400
+            error: "VALIDATION_ERROR"
+            domain: "validation"
+    DuplicateResource:
+      description: Recurso duplicado - El recurso ya existe
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Usuario ya existe con email: usuario@ejemplo.com"
+            details: [ "No se puede crear un recurso duplicado" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 409
+            error: "DUPLICATE_RESOURCE"
+            domain: "user"
+    InvalidToken:
+      description: Token inválido o expirado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "El token ha caducado"
+            details: [ "El token de restablecimiento de contraseña ha expirado" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 401
+            error: "INVALID_TOKEN"
+            domain: "security"
+    PasswordMismatch:
+      description: Error en la contraseña
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "La contraseña actual es incorrecta"
+            details: [ "Verifique su contraseña actual e intente nuevamente" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 400
+            error: "PASSWORD_MISMATCH"
+            domain: "user"
+    BusinessError:
+      description: Error de negocio - Operación no permitida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Operación no permitida"
+            details: [ "No se puede realizar esta operación en el estado actual" ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 400
+            error: "BUSINESS_ERROR"
+            domain: "business"
+    InternalServerError:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: "Error interno del servidor"
+            details: [ "Ha ocurrido un error inesperado. Por favor, inténtelo más tarde." ]
+            timestamp: "2023-01-01T12:00:00Z"
+            status: 500
+            error: "INTERNAL_SERVER_ERROR"
+            domain: "system"
 
   securitySchemes:
     bearerAuth:
