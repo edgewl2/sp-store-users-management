@@ -34,6 +34,7 @@ paths:
     get:
       summary: Obtener todos los usuarios
       description: Retorna una lista de todos los usuarios registrados. Solo accesible por administradores.
+      operationId: getAllUsers
       tags:
         - User
         - Administración
@@ -57,6 +58,7 @@ paths:
       description: |
         Crea un nuevo usuario en el sistema. Todos los campos son obligatorios.
         Se valida que el usuario sea mayor de 18 años y que el correo electrónico tenga un formato válido.
+      operationId: createUser
       tags:
         - User
       requestBody:
@@ -87,6 +89,7 @@ paths:
     get:
       summary: Obtener un usuario por ID
       description: Retorna los detalles de un usuario específico. Accesible por el propio usuario o por administradores.
+      operationId: getUserById
       tags:
         - User
       security:
@@ -114,6 +117,7 @@ paths:
     put:
       summary: Actualizar un usuario
       description: Actualiza los datos de un usuario específico. Accesible por el propio usuario o por administradores.
+      operationId: updateUser
       tags:
         - User
       security:
@@ -153,6 +157,7 @@ paths:
     delete:
       summary: Eliminar un usuario
       description: Elimina un usuario específico. Solo accesible por administradores.
+      operationId: deleteUser
       tags:
         - User
         - Admin
@@ -179,6 +184,7 @@ paths:
     put:
       summary: Cambiar contraseña
       description: Permite a un usuario cambiar su contraseña. Requiere la contraseña actual.
+      operationId: changePassword
       tags:
         - User
         - Auth
@@ -215,6 +221,7 @@ paths:
     get:
       summary: Obtener direcciones de un usuario
       description: Retorna todas las direcciones de un usuario específico.
+      operationId: getUserAddresses
       tags:
         - User
         - Address
@@ -245,6 +252,7 @@ paths:
     post:
       summary: Agregar dirección a un usuario
       description: Agrega una nueva dirección a un usuario específico.
+      operationId: addUserAddress
       tags:
         - User
         - Address
@@ -287,6 +295,7 @@ paths:
     put:
       summary: Actualizar dirección
       description: Actualiza una dirección específica de un usuario.
+      operationId: updateUserAddress
       tags:
         - User
         - Address
@@ -333,6 +342,7 @@ paths:
     delete:
       summary: Eliminar dirección
       description: Elimina una dirección específica de un usuario.
+      operationId: deleteUserAddress
       tags:
         - User
         - Address
@@ -365,6 +375,7 @@ paths:
     get:
       summary: Obtener números de teléfono de un usuario
       description: Retorna todos los números de teléfono de un usuario específico.
+      operationId: getUserPhones
       tags:
         - User
         - Phone
@@ -395,6 +406,7 @@ paths:
     post:
       summary: Agregar número de teléfono a un usuario
       description: Agrega un nuevo número de teléfono a un usuario específico.
+      operationId: addUserPhone
       tags:
         - User
         - Phone
@@ -437,6 +449,7 @@ paths:
     put:
       summary: Actualizar número de teléfono
       description: Actualiza un número de teléfono específico de un usuario.
+      operationId: updateUserPhone
       tags:
         - User
         - Phone
@@ -483,6 +496,7 @@ paths:
     delete:
       summary: Eliminar número de teléfono
       description: Elimina un número de teléfono específico de un usuario.
+      operationId: deleteUserPhone
       tags:
         - User
         - Phone
@@ -515,6 +529,7 @@ paths:
     get:
       summary: Obtener todos los roles
       description: Retorna una lista de todos los roles disponibles. Solo accesible por administradores.
+      operationId: getAllRoles
       tags:
         - Role
         - Admin
@@ -536,6 +551,7 @@ paths:
     post:
       summary: Crear un nuevo rol
       description: Crea un nuevo rol en el sistema. Solo accesible por administradores.
+      operationId: createRole
       tags:
         - Role
         - Admin
@@ -569,6 +585,7 @@ paths:
     get:
       summary: Obtener un rol por ID
       description: Retorna los detalles de un rol específico. Solo accesible por administradores.
+      operationId: getRoleById
       tags:
         - Role
         - Admin
@@ -597,6 +614,7 @@ paths:
     put:
       summary: Actualizar un rol
       description: Actualiza los datos de un rol específico. Solo accesible por administradores.
+      operationId: updateRole
       tags:
         - Role
         - Admin
@@ -637,6 +655,7 @@ paths:
     delete:
       summary: Eliminar un rol
       description: Elimina un rol específico. Solo accesible por administradores.
+      operationId: deleteRole
       tags:
         - Role
         - Admin
@@ -663,6 +682,7 @@ paths:
     get:
       summary: Obtener roles de un usuario
       description: Retorna todos los roles asignados a un usuario específico.
+      operationId: getUserRoles
       tags:
         - User
         - Role
@@ -693,6 +713,7 @@ paths:
     post:
       summary: Asignar rol a un usuario
       description: Asigna un rol a un usuario específico. Solo accesible por administradores.
+      operationId: assignRoleToUser
       tags:
         - User
         - Role
@@ -739,6 +760,7 @@ paths:
     delete:
       summary: Eliminar rol de un usuario
       description: Elimina un rol asignado a un usuario específico. Solo accesible por administradores.
+      operationId: removeRoleFromUser
       tags:
         - User
         - Role
@@ -774,6 +796,7 @@ paths:
       description: |
         Inicia el proceso de restablecimiento de contraseña enviando un correo electrónico 
         con un enlace que contiene un token de restablecimiento.
+      operationId: requestPasswordReset
       tags:
         - User
         - Auth
@@ -799,6 +822,7 @@ paths:
       description: |
         Completa el proceso de restablecimiento de contraseña utilizando el token 
         enviado por correo electrónico y estableciendo una nueva contraseña.
+      operationId: confirmPasswordReset
       tags:
         - User
         - Auth
